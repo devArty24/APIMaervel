@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>MArvel app</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">MARVEL API</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		  <ul class="navbar-nav">
+			<li class="nav-item active">
+			  <a class="nav-link" href="javascript:void(0);" onclick="home()">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:void(0);" onclick="showSucursal()">Sucursales</a>
+			</li>
+		  </ul>
+		</div>
+	  </nav>
+	<!--INICIO HOME-->
+	<div id="home" class="container" style="margin-top:12px;">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 text-center">
+				<h1>Bienvenido</h1><br>
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 text-center">
+				<div id="listadoComics" class="row">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--INICIO SUCURSALES-->
+	<div id="sucursalCrud" class="container hidden-element" style="margin-top:12px;">
+		<!--INICIO BOTON NUEVA SUCURSAL-->
+		<div id="moreSucursal" class="row">
+			<button type="button" class="btn btn-secondary" onclick="nuevaSucursal()">Agregar Sucursal</button>
+		</div>
+		<!--iNICIO FORM NUEVA SUCURSAL-->
+		<form id="frmNewSucursal" class="hidden-element" style="margin-top:3%;">
+			<div id="newSucursal" class="row">
+				<div class="col-12 col-sm-12 col-md-4">
+					<label for="name">Sucursal: </label>
+					<input type="text" class="form-control" id="name" name="name" required>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6">
+					<label for="direccion">Direccion: </label>
+					<input type="text" class="form-control" id="direccion" name="direccion" required>
+				</div>
+				<div class="col-12 col-sm-12 col-md-2">
+					<span>Tienda Activa:</span><br>
+					<input type="radio" style="margin-left:1.5%;" id="si" name="activa" value="1" checked>SI
+					<input type="radio" style="margin-left:20%;" id="no" name="activa" value="0">NO
+				</div>
+				<div class="clearfix"></div>
+				<div class="col-12 col-sm-12 col-md-12" style="margin-top:4%;">
+					<div class="row text-center">
+						<div class="col-12 col-sm-12 col-md-12">
+							<span class="text-center" style="font-size:1.5em;font-weight:700;">Marca la casilla de los comics que estaran disponibles en la nueva sucursal.</span>
+						</div>
+					</div>
+					<div id="comicEleccion" class="row"></div>
+				</div>
+				
+				<div class="col-12 col-sm-12 col-md-12 text-center" style="margin-top:2%;">
+					<input type="submit" id="btnSave" class="btn btn-success" value="Guardar">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="tablaDiv" class="container hidden-element" style="margin-top:5%;">
+		<div class="row" id="marvel-row">
+			<div class="col-12 col-sm-12 col-md-12">
+				<table class="table table-hover table-bordered" id="sucDispo">
+					<thead>
+						<tr><th>SUCURSAL</th><th>DIRECCION</th><th>FECHA</th><th>OPCIONES</th></tr>
+					</thead>
+					<tbody id="contenTableSucursal"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Button trigger modal -->
+	<button type="button" id="btnUpdate" class="btn hidden-element" data-toggle="modal" data-target="#modalUpdate" data-backdrop="static" data-keyboard="false">
+	</button>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdate" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title">Modificar sucursal</h5>
+			<button type="button" id="updateClose" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<form id="frmUpdate">
+					<div class="row">
+						<div class="col-12 col-sm-12 col-md-12">
+							<label for="sucursal">Nombre sucursal: </label>
+							<input type="text" class="form-control" id="sucursal" name="sucursal" required>
+						</div>
+						<div class="col-12 col-sm-12 col-md-12">
+							<label for="direccion">Direccion: </label>
+							<input type="text" class="form-control" id="upDireccion" name="direccion" required>
+						</div>
+						<div class="col-12 col-sm-12 col-md-12 text-center" style="margin-top:2%;">
+							<input type="submit" id="btnACtualizar" class="btn btn-success" value="Actualizar">
+						</div>
+						<input type="hidden" id="cont" name="inin" readonly>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- Button trigger modal -->
+	<button type="button" id="btnModal" class="btn hidden-element" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+	</button>
+	
+	<!-- Modal -->
+	<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Mas Información</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+			<div class="row">
+				<div id="imagen" class="col-12 col-sm-12 col-md-12 text-center" style="height:18%;"></div>
+				<div id="titulo" class="col-12 col-sm-12 col-md-12 text-center" style="margin-top:3%;"></div>
+				<div id="volumen" class="col-12 col-sm-6 col-md-6 text-center"></div>
+				<div id="fecha" class="col-12 col-sm-6 col-md-6 text-center"></div>
+				<div id="paginas" class="col-12 col-sm-12 col-md-12 text-center"></div>
+				<div id="descripcion" class="col-12 col-sm- col-md-12 text-center"></div>
+				<div id="sucursalesIn" class="col-12 col-sm- col-md-12 text-center"></div>
+				<hr>
+				<div class="col-12 col-sm- col-md-12 text-center">
+					<div id="personajes" class="row text-center"></div>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
