@@ -1,4 +1,4 @@
-# APIMaervel
+# APIMarvel
 API Marvel with Raw PHP, jquery
 
 
