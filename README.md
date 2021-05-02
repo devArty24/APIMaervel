@@ -4,11 +4,11 @@
 * [Key Features](#key-Features)
 * [Installation](#installation)
 
-# About APIMarvel
+## About APIMarvel
 
 This code allows you to create a branch asking for the name and address of other comics that will be available in this new branch, as well list the comics and by clicking on the image a modal with information (Title, Volume, Launch date, number of pages, description, in which branch is available, characters).
 
-# Key Features
+## Key Features
 
 1. API Marvel
 2. PHP Native
@@ -23,8 +23,20 @@ In js/app.js the first constant, goes the path where the php file is located, wh
 ```sh
 /* This is used to avoid writing the full path in each ajax request */
  /* If your localhost occupies port just write it in this line */
-    > const urlReq = `http://localhost/apiMarvel/php/`
+     const urlReq = `http://localhost/apiMarvel/php/`
 ```
 
+In js / app.js in the second constant you must write your apikey and hash obtained from the marvel page
 
-In the app.js file there is a constant called urlReq, change the address of the localhost since it contains a port so adapt it to your own localhost.
+```sh
+const apiKeys = `ts=1&apikey=aquiTuAPIKey&hash=aquiTuHash`;
+```
+
+Enter the baseDatos folder and import the file to your MySQL
+
+```sh
+baseDatos/prueba.sql
+```
+***
+Prueba para er que hace el triple asterisco
+***
