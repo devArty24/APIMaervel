@@ -16,15 +16,14 @@ This code allows you to create a branch asking for the name and address of other
 4. JQuery
 5. MySQL
 
-# Installation
+## Installation
 
 In js/app.js the first constant, goes the path where the php file is located, where information is consulted
 
 ```sh
 /* This is used to avoid writing the full path in each ajax request */
  /* If your localhost occupies port just write it in this line */
-
-const urlReq = `http://localhost/apiMarvel/php/`
+     const urlReq = `http://localhost/apiMarvel/php/`
 ```
 
 
