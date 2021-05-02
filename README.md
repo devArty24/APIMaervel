@@ -1,8 +1,8 @@
 # APIMarvel
 
-* [About APIMarvel](#aboutApi)
-* [Key Features](#keyFeat)
-* [Installation](#instal)
+* [About APIMarvel](#about-apimarvel)
+* [Key Features](#key-Features)
+* [Installation](#installation)
 
 # About APIMarvel
 
@@ -23,7 +23,7 @@ In js/app.js the first constant, goes the path where the php file is located, wh
 ```sh
 /* This is used to avoid writing the full path in each ajax request */
  /* If your localhost occupies port just write it in this line */
-     const urlReq = `http://localhost/apiMarvel/php/`
+    > const urlReq = `http://localhost/apiMarvel/php/`
 ```
 
 
