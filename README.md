@@ -37,6 +37,4 @@ Enter the baseDatos folder and import the file to your MySQL
 ```sh
 baseDatos/prueba.sql
 ```
-***
-Prueba para er que hace el triple asterisco
-***
+> If you don't have apikey go to the [Marvel](https://developer.marvel.com/) page
