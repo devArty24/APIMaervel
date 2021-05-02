@@ -1,5 +1,5 @@
-const urlReq = `http://localhost:9090/apiMarvel/php/`
-const apiKeys = `ts=1&apikey=14cfef4a2ed0248b39a2f9897cbe6dd8&hash=ddc175e39e993b7af94eb8f6856aa1cb`;
+const urlReq = `http://localhost/apiMarvel/php/`
+const apiKeys = `ts=1&apikey=aquiTuAPIKey&hash=aquiTuHash`;
 $(document).ready(()=>{
 
 	$.ajax({
